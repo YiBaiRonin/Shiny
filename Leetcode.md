@@ -1,4 +1,4 @@
-**有序数组的 Two Sum** 
+## **有序数组的 Two Sum** 
 
 
 ----------
@@ -12,10 +12,6 @@ Output: index1=1, index2=2
 ```
 
 **题目描述：** 
-
-
-----------
-
 
 在有序数组中找出两个数，使它们的和为 target。
 
@@ -50,22 +46,19 @@ public:
     }
 };
 ```
-**无序数组的 Two Sum** 
+## **无序数组的 Two Sum** 
 
 
 ----------
 
 
-https://leetcode-cn.com/problems/two-sum/
+[Leetcode：1 无序数组的 Two Sum](https://leetcode-cn.com/problems/two-sum/)
 
 ```html
 Input: nums = {2, 7, 11, 15}, target = 9
 Output: [0, 1]
 ```
 **题目描述**
-
-----------
-
 
 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
 
@@ -90,6 +83,38 @@ public:
             }
         }
         return res;
+    }
+};
+```
+
+## **两个数的平方之和**
+[Leetcode：633 两个数的平方和](https://leetcode-cn.com/problems/sum-of-square-numbers/)
+
+----------
+**题目描述**
+给定一个非负整数 c ，你要判断是否存在两个整数 a 和 b，使得 a2 + b2 = c。
+
+```html
+Input: 5
+Output: 1 * 1 + 2 * 2 = 5
+```
+```C++
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        long long left = 0;
+        long long right = sqrt(c);
+        while(left <= right)
+        {
+            long long sum = left * left + right * right;
+            if(sum == c)
+                return true;
+            else if(sum > c)
+                right--;
+            else
+                left++;
+        }
+        return false;
     }
 };
 ```

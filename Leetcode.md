@@ -21,7 +21,7 @@ Output: index1=1, index2=2
 - 如果 sum > target，移动较大的元素，使 sum 变小一些；
 - 如果 sum < target，移动较小的元素，使 sum 变大一些。 
 
-```C++
+```c++
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -64,7 +64,7 @@ Output: [0, 1]
 
 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
 
-```C++
+```c++
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -98,7 +98,7 @@ public:
 Input: 5
 Output: 1 * 1 + 2 * 2 = 5
 ```
-```C++
+```c++
 class Solution {
 public:
     bool judgeSquareSum(int c) {
@@ -115,6 +115,90 @@ public:
                 left++;
         }
         return false;
+    }
+};
+```
+## **反转字符串中的元音字符**
+[Leetcode：345 反转字符串中的原因字符](https://leetcode-cn.com/problems/reverse-vowels-of-a-string/)
+
+----------
+**题目描述**
+
+编写一个函数，以字符串作为输入，反转该字符串中的元音字母。
+
+```html
+Input: "hello"
+Output: holle
+```
+```c++
+class Solution {
+public:
+    bool isAeiou(char c)
+    {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || \
+            c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+    }
+    string reverseVowels(string s) {
+        int left = 0, right = s.size() - 1;
+        while(left < right)
+        {
+            if(!isAeiou(s[left]))
+                left++;
+            else if(!isAeiou(s[right]))
+                right--;
+            else if(isAeiou(s[left]) && isAeiou(s[right]))
+            {
+                swap(s[left], s[right]);
+                left++;
+                right--;
+            }
+        }
+        return s;
+    }
+};
+```
+
+## **验证回文子串**
+
+[Leetcode ：680 验证回文子串](https://leetcode-cn.com/problems/valid-palindrome-ii/submissions/)
+
+
+**题目描述**
+
+给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。
+
+
+```html
+Input: aba
+Output: true
+Input: abca
+Output: true
+```
+```c++
+class Solution {
+public:
+    bool isPalindrome(string s, int left, int right)
+    {
+        if(s.empty())
+            return true;
+        while(left < right)
+        {
+            if(s[left++] != s[right--])
+                return false;
+        }
+        return true;
+    }
+    bool validPalindrome(string s) {
+        int left = 0;
+        int right = s.size() - 1;
+        while(left < right)
+        {
+            if(s[left] != s[right])
+                return isPalindrome(s, left, right - 1) || isPalindrome(s, left + 1, right);
+            left++;
+            right--;
+        }
+        return true;
     }
 };
 ```
